@@ -11,7 +11,11 @@
     </div>
   <% end %>
 
-  
+  <% for field in [:text] do %>
+    <%= label_tag(field, "#{field.to_s.humanize} :") %>
+    <%= f.text_field field %>
+    <br>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

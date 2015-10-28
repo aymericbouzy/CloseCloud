@@ -61,11 +61,6 @@ class LinksController < ApplicationController
     end
   end
 
-  def nearby
-    @links = Link.nearby(params[:latitude], params[:longitude])
-    render :index
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
@@ -74,6 +69,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params[:link]
+      params.require(:link).permit(:text)
     end
 end
