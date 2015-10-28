@@ -1,10 +1,11 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_context
 
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.nearby(@context)
   end
 
   # GET /links/1
@@ -65,6 +66,10 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
+    end
+
+    def set_context
+      @context = { latitude: 0.1, longitude: 0.1 }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
