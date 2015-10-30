@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <% for field in [:text, :latitude, :longitude] do %>
+  <% for field in [:text] do %>
     <%= label_tag(field, "#{field.to_s.humanize} :") %>
     <%= f.text_field field %>
     <br>

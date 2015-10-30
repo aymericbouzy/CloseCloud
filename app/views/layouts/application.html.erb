@@ -7,8 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p id="message"></p>
+  <script>
+    var message = document.getElementById("message");
 
-<%= yield %>
+    function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(store_coordinates);
+      } else {
+          message.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
 
+    function store_coordinates(position) {
+      document.cookie="latitude=" + position.coords.latitude +
+        "; longitude=" + position.coords.longitude +
+        "; accuracy=" + position.coords.accuracy +
+        "; ";
+    }
+
+    if (document.cookie == "") {
+      getLocation();
+    } else {
+      message.innerHTML = "Cookie is " + document.cookie;
+    }
+  </script>
+  <%= yield %>
 </body>
 </html>
