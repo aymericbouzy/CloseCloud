@@ -137,16 +137,18 @@ test:
 production:
   clients:
     default:
-      database: close_cloud_production
+      database: heroku_q4gj3c59
       # The standard MongoDB connection URI allows for easy
       # replica set connection setup.
       # Use environment variables or a config file to keep your
       # credentials safe e.g. <%= ENV['MONGOLAB_URI'] %>.
       hosts:
-        - mongodb://heroku_q4gj3c59:g08k2cqljqmc5d4vpom1tercvt@ds049104.mongolab.com:49104/heroku_q4gj3c59
+        - ds049104.mongolab.com:49104
       options:
         # The default timeout is 5, which is the time in seconds
         # for a connection to time out.
         # We recommend 15 because it allows for plenty of time
         # in most operating environments.
         connect_timeout: 15
+        user: heroku_q4gj3c59
+        password: g08k2cqljqmc5d4vpom1tercvt
