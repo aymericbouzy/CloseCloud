@@ -13,23 +13,23 @@
 
     function getLocation() {
       if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(store_coordinates);
+        navigator.geolocation.getCurrentPosition(store_coordinates);
       } else {
-          message.innerHTML = "Geolocation is not supported by this browser.";
+        message.innerHTML = "Geolocation is not supported by this browser.";
       }
     }
 
     function store_coordinates(position) {
-      document.cookie="latitude=" + position.coords.latitude +
-        "; longitude=" + position.coords.longitude +
-        "; accuracy=" + position.coords.accuracy +
-        "; ";
+      Cookies.set("latitude", position.coords.latitude);
+      Cookies.set("longitude", position.coords.longitude);
+      Cookies.set("accuracy", position.coords.accuracy);
+      message.innerHTML = "Geolocation was set. Cookie is " + document.cookie;
     }
 
-    if (document.cookie == "") {
-      getLocation();
-    } else {
+    if (Cookies.get("latitude")) {
       message.innerHTML = "Cookie is " + document.cookie;
+    } else {
+      getLocation();
     }
   </script>
   <%= yield %>
