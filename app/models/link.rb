@@ -19,7 +19,7 @@ class Link
   end
 
   def self.max_radius
-    20
+    4
   end
 
   def set_coordinates
