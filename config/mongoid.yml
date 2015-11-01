@@ -133,3 +133,10 @@ test:
         read:
           mode: primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      database: close_cloud_production
+      hosts:
+        - mongodb://heroku_q4gj3c59:g08k2cqljqmc5d4vpom1tercvt@ds049104.mongolab.com:49104/heroku_q4gj3c59
