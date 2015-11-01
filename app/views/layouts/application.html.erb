@@ -23,7 +23,7 @@
       Cookies.set("latitude", position.coords.latitude);
       Cookies.set("longitude", position.coords.longitude);
       Cookies.set("accuracy", position.coords.accuracy);
-      message.innerHTML = "Geolocation was set. Cookie is " + document.cookie;
+      location.reload();
     }
 
     if (Cookies.get("latitude")) {

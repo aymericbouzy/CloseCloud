@@ -69,7 +69,7 @@ class LinksController < ApplicationController
     end
 
     def set_context
-      @context = { latitude: 0.1, longitude: 0.1 }
+      @context = { latitude: cookies[:latitude], longitude: cookies[:longitude] }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
