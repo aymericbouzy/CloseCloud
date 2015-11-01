@@ -135,12 +135,17 @@ test:
         max_pool_size: 1
 
 production:
-  sessions:
+  # Configure available database clients. (required)
+  clients:
+    # Defines the default client. (required)
     default:
-      # The standard MongoDB connection URI allows for easy replica set connection setup.
-      # Use environment variables or a config file to keep your credentials safe.
-      uri: 'mongodb://heroku_q4gj3c59:g08k2cqljqmc5d4vpom1tercvt@ds049104.mongolab.com:49104/heroku_q4gj3c59'
-
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: close_cloud_development
+      # Provides the hosts the default client can connect to. Must be an array
+      # of host:port pairs. (required)
+      hosts:
+        - mongodb://heroku_q4gj3c59:g08k2cqljqmc5d4vpom1tercvt@ds049104.mongolab.com:49104/heroku_q4gj3c59
       options:
         # The default consistency is :eventual, which reads from secondaries when possible.
         # Strong forces reads to primary. We recommend using strong consistency.
