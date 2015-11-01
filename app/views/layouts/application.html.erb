@@ -19,8 +19,13 @@
       }
     }
 
+    function date_in_seconds_from_now(seconds) {
+      current_date = new Date();
+      current_date.setSeconds(current_date.getSeconds() + seconds);
+    }
+
     function store_coordinates(position) {
-      Cookies.set("latitude", position.coords.latitude);
+      Cookies.set("latitude", position.coords.latitude, { expires: date_in_seconds_from_now(5) });
       Cookies.set("longitude", position.coords.longitude);
       Cookies.set("accuracy", position.coords.accuracy);
       location.reload();
