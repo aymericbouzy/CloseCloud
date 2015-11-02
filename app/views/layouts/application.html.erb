@@ -31,9 +31,7 @@
       location.reload();
     }
 
-    if (Cookies.get("latitude")) {
-      message.innerHTML = "Cookie is " + document.cookie;
-    } else {
+    if (!Cookies.get("latitude")) {
       getLocation();
     }
   </script>
