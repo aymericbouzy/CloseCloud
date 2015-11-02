@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem "mongoid", "~> 4"
+gem "mongoid", "~> 5"
 gem "geocoder"
 gem 'js_cookie_rails', '~> 1.0.1'
 
