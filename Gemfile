@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "mongoid", "~> 5"
 gem "geocoder"
 gem 'js_cookie_rails', '~> 1.0.1'
+gem "rails_autolink"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
