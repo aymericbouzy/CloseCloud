@@ -2,7 +2,7 @@
 
 <h1>Listing Links</h1>
 
-<table>
+<table class="table table-responsive">
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -13,9 +13,9 @@
     <% @links.each do |link| %>
       <tr>
         <td><%= auto_link(link.text) %></td>
-        <td><%= link_to 'Show', link %></td>
-        <td><%= link_to 'Edit', edit_link_path(link) %></td>
-        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', link, class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_link_path(link), class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Link', new_link_path %>
+<%= link_to 'New Link', new_link_path, class: "btn btn-default" %>

@@ -5,41 +5,44 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <p id="message"></p>
-  <script>
-    var message = document.getElementById("message");
-    var geolocation_refresh_time = 60;
+  <div class="container">
+    <p id="message"></p>
+    <script>
+      var message = document.getElementById("message");
+      var geolocation_refresh_time = 60;
 
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(store_coordinates, handle_geolocation_error);
-      } else {
-        message.innerHTML = "Geolocation is not supported by this browser.";
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(store_coordinates, handle_geolocation_error);
+        } else {
+          message.innerHTML = "Geolocation is not supported by this browser.";
+        }
       }
-    }
 
-    function handle_geolocation_error(error) {
-      if (error.code == error.PERMISSION_DENIED) {
-        message.innerHTML = "Geolocation was denied by your browser. Please go to your browser settings and activate geolocation.";
-      } else {
-        message.innerHTML = "Geolocation failed. Please try again.";
+      function handle_geolocation_error(error) {
+        if (error.code == error.PERMISSION_DENIED) {
+          message.innerHTML = "Geolocation was denied by your browser. Please go to your browser settings and activate geolocation.";
+        } else {
+          message.innerHTML = "Geolocation failed. Please try again.";
+        }
       }
-    }
 
-    function store_coordinates(position) {
-      Cookies.set("latitude", position.coords.latitude);
-      Cookies.set("longitude", position.coords.longitude);
-      Cookies.set("accuracy", position.coords.accuracy);
-      Cookies.set("stored_at", (new Date()).getSeconds());
-      location.reload();
-    }
+      function store_coordinates(position) {
+        Cookies.set("latitude", position.coords.latitude);
+        Cookies.set("longitude", position.coords.longitude);
+        Cookies.set("accuracy", position.coords.accuracy);
+        Cookies.set("stored_at", (new Date()).getSeconds());
+        location.reload();
+      }
 
-    if (!Cookies.get("stored_at") || (new Date()).getSeconds() - Cookies.get("stored_at") > geolocation_refresh_time) {
-      getLocation();
-    }
-  </script>
-  <%= yield %>
+      if (!Cookies.get("stored_at") || (new Date()).getSeconds() - Cookies.get("stored_at") > geolocation_refresh_time) {
+        getLocation();
+      }
+    </script>
+    <%= yield %>    
+  </div>
 </body>
 </html>
