@@ -10,6 +10,7 @@
   <p id="message"></p>
   <script>
     var message = document.getElementById("message");
+    var geolocation_refresh_time = 60;
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -19,19 +20,15 @@
       }
     }
 
-    function date_in_seconds_from_now(seconds) {
-      current_date = new Date();
-      current_date.setSeconds(current_date.getSeconds() + seconds);
-    }
-
     function store_coordinates(position) {
-      Cookies.set("latitude", position.coords.latitude, { expires: date_in_seconds_from_now(5) });
+      Cookies.set("latitude", position.coords.latitude);
       Cookies.set("longitude", position.coords.longitude);
       Cookies.set("accuracy", position.coords.accuracy);
+      Cookies.set("stored_at", (new Date()).getSeconds());
       location.reload();
     }
 
-    if (!Cookies.get("latitude")) {
+    if (!Cookies.get("stored_at") || (new Date()).getSeconds() - Cookies.get("stored_at") > geolocation_refresh_time) {
       getLocation();
     }
   </script>
