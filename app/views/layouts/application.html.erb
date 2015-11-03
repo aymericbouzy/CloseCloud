@@ -14,9 +14,17 @@
 
     function getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(store_coordinates);
+        navigator.geolocation.getCurrentPosition(store_coordinates, handle_geolocation_error);
       } else {
         message.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function handle_geolocation_error(error) {
+      if (error.code == error.PERMISSION_DENIED) {
+        message.innerHTML = "Geolocation was denied by your browser. Please go to your browser settings and activate geolocation.";
+      } else {
+        message.innerHTML = "Geolocation failed. Please try again.";
       }
     }
 
