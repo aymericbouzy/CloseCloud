@@ -35,6 +35,7 @@ gem "mongoid", "~> 5"
 gem "geocoder"
 gem 'js_cookie_rails', '~> 1.0.1'
 gem "rails_autolink"
+gem "httparty"
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS

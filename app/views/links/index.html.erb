@@ -5,7 +5,7 @@
 <table class="table table-responsive">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -13,9 +13,15 @@
     <% @links.each do |link| %>
       <tr>
         <td><%= auto_link(link.text) %></td>
-        <td><%= link_to 'Show', link, class: "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_link_path(link), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
+        <% if link.origin == "google_places" then %>
+          <td><%= link_to 'Show', links_path, class: "btn btn-default" %></td>
+          <td></td>
+          <td></td>
+        <% else %>
+          <td><%= link_to 'Show', link, class: "btn btn-default" %></td>
+          <td><%= link_to 'Edit', edit_link_path(link), class: "btn btn-default" %></td>
+          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
