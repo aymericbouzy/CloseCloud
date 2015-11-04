@@ -14,7 +14,7 @@
       <tr>
         <td><%= auto_link(link.text) %></td>
         <% if link.origin == "google_places" then %>
-          <td><%= link_to 'Show', links_path, class: "btn btn-default" %></td>
+          <td><%= link_to "Show", show_google_place_link_path(link.place_id), class: "btn btn-default" %></td>
           <td></td>
           <td></td>
         <% else %>

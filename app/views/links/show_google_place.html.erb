@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%=  %>
+<%= link_to @google_place["name"], @google_place["url"], class: "btn btn-primary" %>
 
-<%= link_to 'Back', links_path %>
+<%= link_to 'Back', links_path, class: "btn btn-default" %>
