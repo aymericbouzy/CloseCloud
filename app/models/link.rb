@@ -16,7 +16,11 @@ class Link
   end
 
   def self.nearby(context)
-    links = Link.all.select { |l| l.geocoded? && l.distance_from([context[:latitude], context[:longitude]]) < Link.max_radius }
+    links = Link.all.select { |l|
+      l.geocoded? &&
+      l.distance_from([context[:latitude], context[:longitude]]) < Link.max_radius &&
+      l._id.generation_time > Time.now - 60 * 60 * 24
+    }
     types = ["accounting", "airport", "amusement_park", "aquarium", "art_gallery", "atm", "bakery",
       "bank", "bar", "beauty_salon", "bicycle_store", "book_store", "bowling_alley", "bus_station",
       "cafe", "campground", "car_dealer", "car_rental", "car_repair", "car_wash", "casino", "cemetery",
@@ -40,7 +44,7 @@ class Link
   end
 
   def self.max_radius
-    1
+    0.1
   end
 
   def set_missing_fields
