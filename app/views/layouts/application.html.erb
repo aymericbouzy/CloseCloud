@@ -34,15 +34,15 @@
         Cookies.set("latitude", position.coords.latitude);
         Cookies.set("longitude", position.coords.longitude);
         Cookies.set("accuracy", position.coords.accuracy);
-        Cookies.set("stored_at", (new Date()).getSeconds());
+        Cookies.set("stored_at", Date.now()/1000);
         location.reload();
       }
 
-      if (!Cookies.get("stored_at") || (new Date()).getSeconds() - Cookies.get("stored_at") > geolocation_refresh_time) {
+      if (!Cookies.get("stored_at") || Date.now()/1000 - Cookies.get("stored_at") > geolocation_refresh_time) {
         getLocation();
       }
     </script>
-    <%= yield %>    
+    <%= yield %>
   </div>
 </body>
 </html>
