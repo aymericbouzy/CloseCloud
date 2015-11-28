@@ -16,6 +16,7 @@ class LinksController < ApplicationController
   def show_google_place
     google_place_result = HTTParty.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{params[:id]}&key=AIzaSyCSdMKcdPKJbzYunFO7-15dCZdEwkYPDVM")
     @google_place = JSON.parse(google_place_result.body)["result"]
+    redirect_to @google_place["url"]
   end
 
   # GET /links/new

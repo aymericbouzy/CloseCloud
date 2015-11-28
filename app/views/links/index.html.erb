@@ -1,33 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
+<table class="table table-responsive table-hover">
   <tbody>
     <% @links.each do |link| %>
-      <tr>
+      <% path = if link.origin == "google_places" then
+        show_google_place_link_path(link.place_id)
+      else
+        link_path(link)
+      end %>
+      <tr data-href="<%= path %>">
         <td>
           <%= image_tag(link.icon, size: "20") %>
         </td>
         <td><%= auto_link(link.text) %></td>
-        <% if link.origin == "google_places" then %>
-          <td><%= link_to "Show", show_google_place_link_path(link.place_id), class: "btn btn-default" %></td>
-          <td></td>
-          <td></td>
-        <% else %>
-          <td><%= link_to 'Show', link, class: "btn btn-default" %></td>
-          <td><%= link_to 'Edit', edit_link_path(link), class: "btn btn-default" %></td>
-          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
 
 <%= link_to '+', new_link_path, class: "btn btn-default" %>
