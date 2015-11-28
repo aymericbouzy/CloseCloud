@@ -12,6 +12,9 @@
   <tbody>
     <% @links.each do |link| %>
       <tr>
+        <td>
+          <%= image_tag(link.icon, size: "20") %>
+        </td>
         <td><%= auto_link(link.text) %></td>
         <% if link.origin == "google_places" then %>
           <td><%= link_to "Show", show_google_place_link_path(link.place_id), class: "btn btn-default" %></td>
