@@ -11,13 +11,16 @@
     </div>
   <% end %>
 
-  <% for field in [:text] do %>
-    <%= label_tag(field, "#{field.to_s.humanize} :") %>
-    <%= f.text_field field %>
-    <br>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field form-group">
+    <%= f.label :text, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :text, class: 'form-control' %>
+    </div>
+  </div>
+  <!-- <input type="file" id="take-picture" accept="image/*" capture="camera"> -->
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Go", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
